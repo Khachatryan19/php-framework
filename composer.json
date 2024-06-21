@@ -1,0 +1,13 @@
+{
+    "name": "hp/php-framework",
+    "autoload": {
+        "classmap": ["src/", "src/Http/Controllers"]
+    },
+    "authors": [
+        {
+            "name": "Grish",
+            "email": "grishkhachatryan@gmail.com"
+        }
+    ],
+    "require": {}
+}
