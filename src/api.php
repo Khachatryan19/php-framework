@@ -3,7 +3,10 @@
 use src\Http\Controllers\ExampleController;
 use src\Router;
 
-Router::add('GET', '/api/example', [new ExampleController(), 'test']);
-Router::add('GET', '/api/example2', [new ExampleController(), 'test2']);
+Router::prefix('/api', function () {
+    Router::add('GET', '/example', [new ExampleController(), 'test']);
+    Router::add('GET', '/example2', [new ExampleController(), 'test2']);
+    Router::add('POST', '/post', [new ExampleController(), 'post']);
+});
 
 Router::dispatch();
