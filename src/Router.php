@@ -31,8 +31,19 @@ class Router
 
         foreach (self::$routes as $route) {
             if ($route['method'] === $method && $route['path'] === $uri) {
-                call_user_func($route['handler'], Request::getInstance($route['body'], $route['query']));
-                return;
+                $rm = new ReflectionMethod($route['handler'][0], $route['handler'][1]);
+
+                $classNames = [];
+                foreach ($rm->getParameters() as $parameter) {
+                    $classNames[] = end( explode( '-', $parameter->getType()->getName()));
+                    $classNames[] = $parameter->getType()->getName();
+                }
+                print_r($classNames);
+                die;
+                $injection = new Injection(['Request']); //$classNames
+                $injection->prepareObjects();
+
+                return call_user_func_array($route['handler'], $injection->getObjects());
             }
         }
 
