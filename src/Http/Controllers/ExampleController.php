@@ -2,6 +2,8 @@
 
 namespace src\Http\Controllers;
 use src\Request;
+use src\Router;
+use src\Test;
 
 class ExampleController
 {
@@ -15,7 +17,7 @@ class ExampleController
         echo 'example test 2 is working';
     }
 
-    public function post(Request $request)
+    public function post(Test $test, Request $request)
     {
         print_r($request->body);
         die;

@@ -13,8 +13,7 @@ class Injection
 
     public function prepareObjects(): void {
         foreach ($this->classNames as $className) {
-            $lowerMethodName = strtolower($className);
-            $this->objects[] = Container::{$lowerMethodName}();
+            $this->objects[] = Container::{$className}();
         }
     }
 

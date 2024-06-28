@@ -35,12 +35,10 @@ class Router
 
                 $classNames = [];
                 foreach ($rm->getParameters() as $parameter) {
-                    $classNames[] = end( explode( '-', $parameter->getType()->getName()));
                     $classNames[] = $parameter->getType()->getName();
                 }
-                print_r($classNames);
-                die;
-                $injection = new Injection(['Request']); //$classNames
+
+                $injection = new Injection($classNames);
                 $injection->prepareObjects();
 
                 return call_user_func_array($route['handler'], $injection->getObjects());
@@ -56,5 +54,10 @@ class Router
         self::$prefix = $prefix;
 
         call_user_func($routes);
+    }
+
+    public function print1()
+    {
+        return 1;
     }
 }

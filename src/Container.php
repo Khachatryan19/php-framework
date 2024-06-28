@@ -15,8 +15,12 @@ class Container
 
     public static function __callStatic($name, $arguments)
     {
-        if (method_exists(self::class, $name)) {
-            return self::{$name}();
+        $funcName = strtolower(substr(strrchr($name, "\\"), 1));
+
+        if (method_exists(self::class, $funcName)) {
+            return self::{$funcName}();
         }
+
+        return new $name();
     }
 }
