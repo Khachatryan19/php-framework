@@ -3,7 +3,7 @@
 namespace src;
 class Injection
 {
-    private array $classNames = [];
+    private array $classNames;
     private array $objects = [];
 
     public function __construct(array $classNames)

@@ -19,11 +19,6 @@ class ExampleController
 
     public function post(Test $test, Request $request)
     {
-        print_r($request->body);
-        die;
-        $request = Request::getInstance();
-        print_r($request->body);
-        die;
 
     }
 }
