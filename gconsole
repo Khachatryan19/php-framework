@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+use src\Console\Console;
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/src/Console/Console.php';
+
+$console = new Console();
+print_r($console->runCommand());
+
+?>
