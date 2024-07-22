@@ -30,25 +30,17 @@ class Console
 
     private function setCommandFileName(): void
     {
-        $className = '\\ExistingCommands\\';
+        $folderName = '\\ExistingCommands\\';
 
-        if (count($this->argv) === 1) {
-            $this->className = __NAMESPACE__ . ucfirst($this->argv[0]) . '\\' . $this->argv[0];
-            return;
+        if (count($this->argv) > 2) {
+            $this->objectArgs = array_pop($this->argv);
         }
 
-        $counter = 1;
-        do {
-            $className .= ucfirst($this->argv[$counter-1]) . '\\';
-            $counter++;
-        } while ($counter !== count($this->argv));
+        $capitalLettersArray = array_map(function ($item) {
+            return ucfirst($item);
+        }, $this->argv);
 
-        if ($counter >= 3) {
-            $this->objectArgs = array_slice($this->argv, 2);
-            $this->className = substr_replace(__NAMESPACE__ . $className, '', -1);
-        }else {
-            $this->className = __NAMESPACE__ . ucfirst($this->argv[$counter-1]);
-        }
+        $this->className = __NAMESPACE__ . $folderName . implode('\\', $capitalLettersArray);
     }
 
     public function __construct()

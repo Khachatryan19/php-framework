@@ -1,16 +1,17 @@
 <?php
 
 namespace src\Console\ExistingCommands\Make;
-class Migration
+use src\Console\ExistingCommands\CommandAbstract;
+
+class Migration extends CommandAbstract
 {
-    private array $args;
-    public function __construct(array $args = [])
+    public function __construct(string $args)
     {
-        $this->args = $args;
-        $this->handle();
+        parent::__construct($args);
     }
 
     public function handle() {
+        fopen('test.txt', "w");
         print_r($this->args);
         die;
     }

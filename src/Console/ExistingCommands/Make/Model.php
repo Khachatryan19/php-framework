@@ -1,9 +1,10 @@
 <?php
 
 namespace src\Console\ExistingCommands\Make;
+
 use src\Console\ExistingCommands\CommandAbstract;
 
-class Controller extends CommandAbstract
+class Model extends CommandAbstract
 {
     public function __construct(string $args)
     {
@@ -12,17 +13,17 @@ class Controller extends CommandAbstract
 
     public function handle(): void
     {
-        $directory = 'src/Http/Controllers/';
+        $directory = 'src/Http/Model/';
         if (!is_dir($directory)) {
             mkdir($directory, 0777, true);
         }
 
         $createdFile = fopen($directory . $this->args . '.php', "w");
         $fileData =
-        <<<END
+            <<<END
         <?php
         
-        namespace src\Http\Controllers;
+        namespace src\Http\Model;
         
         class $this->args
         {
